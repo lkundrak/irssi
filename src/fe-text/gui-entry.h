@@ -4,6 +4,7 @@
 typedef struct {
 	int text_len, text_alloc; /* as shorts, not chars */
 	unichar *text;
+	int *colors;
 
         int cutbuffer_len;
 	unichar *cutbuffer;
@@ -59,5 +60,7 @@ void gui_entry_move_pos(GUI_ENTRY_REC *entry, int pos);
 void gui_entry_move_words(GUI_ENTRY_REC *entry, int count, int to_space);
 
 void gui_entry_redraw(GUI_ENTRY_REC *entry);
+
+void gui_entry_set_color(GUI_ENTRY_REC *entry, int pos, int len, int color);
 
 #endif

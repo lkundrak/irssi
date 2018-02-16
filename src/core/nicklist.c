@@ -169,45 +169,61 @@ void nicklist_rename_unique(SERVER_REC *server,
 			     nicklist_get_same_unique(server, old_nick_id));
 }
 
+typedef struct {
+	CHANNEL_REC *channel;
+	const char *mask;
+	NICK_REC *nick;
+} FindWildcardsData;
+
+static gboolean match_wildcard (gpointer key, gpointer value, gpointer user_data)
+{
+	FindWildcardsData *data = user_data;
+	
+	for (data->nick = value; data->nick != NULL; data->nick = data->nick->next) {
+		if (mask_match_address(data->channel->server, data->mask,
+				       data->nick->nick, data->nick->host))
+			return TRUE;
+	}
+
+	return FALSE;
+}
+
 static NICK_REC *nicklist_find_wildcards(CHANNEL_REC *channel,
 					 const char *mask)
 {
+	FindWildcardsData data = { channel, mask, NULL };
+
+	g_hash_table_find (channel->nicks, match_wildcard, &data);
+	return data.nick;
+}
+
+typedef struct {
+	CHANNEL_REC *channel;
+	const char *mask;
+	GSList *nicks;
+} FindMultipleData;
+
+static void match_multiple (gpointer key, gpointer value, gpointer user_data)
+{
+	FindMultipleData *data = user_data;
 	NICK_REC *nick;
-	GHashTableIter iter;
 
-	g_hash_table_iter_init(&iter, channel->nicks);
-	while (g_hash_table_iter_next(&iter, NULL, (void*)&nick)) {
-		for (; nick != NULL; nick = nick->next) {
-			if (mask_match_address(channel->server, mask,
-					       nick->nick, nick->host))
-				return nick;
-		}
+	for (nick = value; nick != NULL; nick = nick->next) {
+		if (mask_match_address(data->channel->server, data->mask,
+				       nick->nick, nick->host))
+			data->nicks = g_slist_prepend(data->nicks, nick);
 	}
-
-	return NULL;
 }
 
 GSList *nicklist_find_multiple(CHANNEL_REC *channel, const char *mask)
 {
-	GSList *nicks;
-	NICK_REC *nick;
-	GHashTableIter iter;
+	FindMultipleData data = { channel, mask, NULL };
 
 	g_return_val_if_fail(IS_CHANNEL(channel), NULL);
 	g_return_val_if_fail(mask != NULL, NULL);
 
-	nicks = NULL;
-
-	g_hash_table_iter_init(&iter, channel->nicks);
-	while (g_hash_table_iter_next(&iter, NULL, (void*)&nick)) {
-		for (; nick != NULL; nick = nick->next) {
-			if (mask_match_address(channel->server, mask,
-					       nick->nick, nick->host))
-				nicks = g_slist_prepend(nicks, nick);
-		}
-	}
-
-	return nicks;
+	g_hash_table_foreach (channel->nicks, match_multiple, &data);
+	return data.nicks;
 }
 
 /* Find nick */

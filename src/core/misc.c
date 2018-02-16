@@ -266,24 +266,28 @@ void hash_save_key(char *key, void *value, GSList **list)
         *list = g_slist_append(*list, key);
 }
 
+typedef struct {
+	const char *cmd;
+	GList *list;
+} RemoveKnownData;
+
+static void match_remove_known (gpointer key, gpointer value, gpointer user_data)
+{
+	RemoveKnownData *data = user_data;
+	char *option = key;
+
+	if (data->cmd == NULL || !command_have_option(data->cmd, option))
+		data->list = g_list_append (data->list, option);
+}
+
 /* remove all the options from the optlist hash table that are valid for the
  * command cmd */
 GList *optlist_remove_known(const char *cmd, GHashTable *optlist)
 {
-	GList *list, *tmp, *next;
+	RemoveKnownData data = { cmd, NULL };
 
-	list = g_hash_table_get_keys(optlist);
-	if (cmd != NULL && list != NULL) {
-		for (tmp = list; tmp != NULL; tmp = next) {
-			char *option = tmp->data;
-			next = tmp->next;
-
-			if (command_have_option(cmd, option))
-				list = g_list_remove(list, option);
-		}
-	}
-
-	return list;
+	g_hash_table_foreach (optlist, match_remove_known, &data);
+	return data.list;
 }
 
 GList *glist_find_string(GList *list, const char *key)

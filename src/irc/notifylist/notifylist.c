@@ -32,6 +32,8 @@
 #include "notifylist.h"
 #include "notify-setup.h"
 
+#include "misc.h"
+
 GSList *notifies;
 
 NOTIFYLIST_REC *notifylist_add(const char *mask, const char *ircnets,

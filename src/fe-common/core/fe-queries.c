@@ -35,6 +35,8 @@
 #include "window-items.h"
 #include "printtext.h"
 
+#include "misc.h"
+
 static int queryclose_tag, query_auto_close, querycreate_level;
 
 /* Return query where to put the private message. */

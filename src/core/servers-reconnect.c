@@ -30,6 +30,8 @@
 
 #include "settings.h"
 
+#include "misc.h"
+
 GSList *reconnects;
 static int last_reconnect_tag;
 static int reconnect_timeout_tag;

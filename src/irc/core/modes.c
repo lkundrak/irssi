@@ -30,6 +30,8 @@
 #include "mode-lists.h"
 #include "nicklist.h"
 
+#include "misc.h"
+
 /* Change nick's mode in channel */
 static void nick_mode_change(IRC_CHANNEL_REC *channel, const char *nick,
 			     char mode, int type, const char *setby)

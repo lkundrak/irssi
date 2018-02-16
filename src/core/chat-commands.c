@@ -34,6 +34,8 @@
 #include "window-item-def.h"
 #include "rawlog.h"
 
+#include "misc.h"
+
 static SERVER_CONNECT_REC *get_server_connect(const char *data, int *plus_addr,
 					      char **rawlog_file)
 {

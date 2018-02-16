@@ -29,6 +29,8 @@
 #include "formats.h"
 #include "recode.h"
 
+#include "misc.h"
+
 static char *recode_fallback = NULL;
 static char *recode_out_default = NULL;
 static char *term_charset = NULL;

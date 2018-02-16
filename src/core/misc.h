@@ -114,4 +114,8 @@ char **strsplit_len(const char *str, int len, gboolean onspace);
  * return a pointer to the newly allocated buffer */
 char *binary_to_hex(unsigned char *buffer, size_t size);
 
+#if !GLIB_CHECK_VERSION(2,16,0)
+int g_strcmp0 (const char *str1, const char *str2);
+#endif
+
 #endif

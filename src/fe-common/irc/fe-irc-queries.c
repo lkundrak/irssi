@@ -25,6 +25,8 @@
 #include "queries.h"
 #include "nicklist.h"
 
+#include "misc.h"
+
 static QUERY_REC *query_find_address(SERVER_REC *server, const char *address)
 {
 	GSList *tmp;

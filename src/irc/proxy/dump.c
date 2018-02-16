@@ -30,6 +30,8 @@
 #include "irc-nicklist.h"
 #include "modes.h"
 
+#include "misc.h"
+
 void proxy_outdata(CLIENT_REC *client, const char *data, ...)
 {
 	va_list args;

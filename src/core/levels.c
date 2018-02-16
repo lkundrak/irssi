@@ -21,6 +21,8 @@
 #include "module.h"
 #include "levels.h"
 
+#include "misc.h"
+
 static const char *levels[] = {
 	"CRAP",
 	"MSGS",

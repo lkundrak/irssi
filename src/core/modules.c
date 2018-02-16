@@ -22,6 +22,8 @@
 #include "modules.h"
 #include "signals.h"
 
+#include "misc.h"
+
 GSList *modules;
 
 static GHashTable *uniqids, *uniqstrids;

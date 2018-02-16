@@ -29,6 +29,8 @@
 #include "servers.h"
 #include "servers-setup.h"
 
+#include "misc.h"
+
 GSList *setupservers;
 
 static char *old_source_host;

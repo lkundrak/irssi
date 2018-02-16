@@ -39,6 +39,8 @@
 #include "fe-irc-channels.h"
 #include "fe-irc-server.h"
 
+#include "misc.h"
+
 static void sig_message_own_public(SERVER_REC *server, const char *msg,
 				   const char *target, const char *origtarget)
 {

@@ -30,6 +30,8 @@
 #include "gui-windows.h"
 #include "gui-printtext.h"
 
+#include "misc.h"
+
 void statusbar_items_init(void);
 void statusbar_items_deinit(void);
 

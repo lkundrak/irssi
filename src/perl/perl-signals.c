@@ -30,6 +30,8 @@
 #include "perl-common.h"
 #include "perl-signals.h"
 
+#include "misc.h"
+
 typedef struct {
         PERL_SCRIPT_REC *script;
 	int signal_id;

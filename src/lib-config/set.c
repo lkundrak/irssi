@@ -20,6 +20,8 @@
 
 #include "module.h"
 
+#include "misc.h"
+
 static void cache_remove(CONFIG_REC *rec, CONFIG_NODE *node)
 {
 	char *path;

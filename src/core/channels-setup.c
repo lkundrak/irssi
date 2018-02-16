@@ -28,6 +28,8 @@
 #include "servers-setup.h"
 #include "channels-setup.h"
 
+#include "misc.h"
+
 GSList *setupchannels;
 
 static int compare_channel_setup (CONFIG_NODE *node, CHANNEL_SETUP_REC *channel)

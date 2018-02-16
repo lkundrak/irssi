@@ -2,6 +2,8 @@
 #include "signals.h"
 #include "terminfo-core.h"
 
+#include "misc.h"
+
 #ifndef _POSIX_VDISABLE
 #  define _POSIX_VDISABLE 0
 #endif

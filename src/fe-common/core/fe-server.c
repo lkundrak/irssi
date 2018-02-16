@@ -34,6 +34,8 @@
 #include "module-formats.h"
 #include "printtext.h"
 
+#include "misc.h"
+
 static void print_servers(void)
 {
 	GSList *tmp;

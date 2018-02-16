@@ -117,26 +117,16 @@ textui_sources = \
 EXTRA_DIST = \
 	get-signals.pl \
 	irssi-core.pl \
-	Makefile_silent.pm \
 	$(common_sources) \
 	$(irc_sources) \
 	$(ui_sources) \
 	$(textui_sources)
 
-am_v_pl__show_gen = $(am__v_pl__show_gen_$(V))
-am_v_pl__hide_gen = $(am__v_pl__hide_gen_$(V))
-am__v_pl__show_gen_ = $(am__v_pl__show_gen_$(AM_DEFAULT_VERBOSITY))
-am__v_pl__hide_gen_ = $(am__v_pl__hide_gen_$(AM_DEFAULT_VERBOSITY))
-am__v_pl__show_gen_0 = echo "  GEN     " $$dir ;
-am__v_pl__hide_gen_0 = > /dev/null
-am__v_pl__show_gen_1 = 
-am__v_pl__hide_gen_1 = 
-
 all-local:
-	$(AM_V_GEN)for dir in $(perl_dirs); do \
+	for dir in $(perl_dirs); do \
 	  cd $$dir && \
 	  if [ ! -f Makefile ]; then \
-	    $(am_v_pl__show_gen)$(perlpath) Makefile.PL $(PERL_MM_PARAMS) $(am_v_pl__hide_gen); \
+	    $(perlpath) Makefile.PL $(PERL_MM_PARAMS); \
 	  fi && \
 	  ($(MAKE) CC="$(CC)" CCFLAGS="$(PERL_CFLAGS) $(CFLAGS)" $(PERL_EXTRA_OPTS) || \
 	   $(MAKE) CC="$(CC)" CCFLAGS="$(PERL_CFLAGS) $(CFLAGS)" $(PERL_EXTRA_OPTS)) && \

@@ -1,7 +1,9 @@
 man_MANS = \
 	irssi.1
 
-doc_DATA = \
+docsdir = ${prefix}/share/doc/${PACKAGE_TARNAME}
+
+docs_DATA = \
 	design.txt \
 	formats.txt \
 	manual.txt \
@@ -12,6 +14,6 @@ doc_DATA = \
 	special_vars.txt \
 	startup-HOWTO.html
 
-EXTRA_DIST = $(doc_DATA) $(man_MANS)
+EXTRA_DIST = $(docs_DATA) $(man_MANS)
 
 SUBDIRS = help

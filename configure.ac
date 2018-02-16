@@ -144,13 +144,13 @@ AC_ARG_ENABLE(true-color,
 	want_truecolor=no)
 
 AC_ARG_ENABLE(gregex,
-[  --disable-gregex     Build without GRegex (fall back to regex.h)],
+[  --enable-gregex     Build without GRegex (fall back to regex.h)],
 	if test x$enableval = xno ; then
 		want_gregex=no
 	else
 		want_gregex=yes
 	fi,
-	want_gregex=yes)
+	want_gregex=no)
 
 dnl **
 dnl ** just some generic stuff...

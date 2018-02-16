@@ -522,7 +522,7 @@ static void ctcp_msg_dcc_send(IRC_SERVER_REC *server, const char *data,
 	if (dcc == NULL) {
 		g_free(address);
 		g_free(fname);
-		g_warn_if_reached();
+		g_warning("should not be reached");
 		return;
 	}
 	dcc->target = g_strdup(target);

@@ -424,7 +424,7 @@ static int dcc_send_one_file(int queue, const char *target, const char *fname,
 	dcc = dcc_send_create(server, chat, target, str);
 	g_free(str);
 	if (dcc == NULL) {
-		g_warn_if_reached();
+		g_warning("should not be reached");
 		return FALSE;
 	}
 

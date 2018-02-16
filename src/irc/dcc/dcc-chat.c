@@ -495,7 +495,7 @@ static void cmd_dcc_chat(const char *data, IRC_SERVER_REC *server)
 	dcc = dcc_chat_create(server, NULL, nick, "chat");
 	if (dcc == NULL) {
 		cmd_params_free(free_arg);
-		g_warn_if_reached();
+		g_warning("should not be reached");
 		return;
 	}
 
@@ -676,7 +676,7 @@ static void ctcp_msg_dcc_chat(IRC_SERVER_REC *server, const char *data,
 	dcc = dcc_chat_create(server, chat, nick, params[0]);
 	if (dcc == NULL) {
 		g_strfreev(params);
-		g_warn_if_reached();
+		g_warning("should not be reached");
 		return;
 	}
 	dcc->target = g_strdup(target);

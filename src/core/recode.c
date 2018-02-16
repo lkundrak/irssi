@@ -198,8 +198,8 @@ char **recode_split(const SERVER_REC *server, const char *str,
 	int n = 0;
 	char **ret;
 
-	g_warn_if_fail(str != NULL);
 	if (str == NULL) {
+		g_warning("should not be reached");
 		ret = g_new(char *, 1);
 		ret[0] = NULL;
 		return ret;

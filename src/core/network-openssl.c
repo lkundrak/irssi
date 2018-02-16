@@ -41,6 +41,8 @@
 #define X509_get_notBefore(x)     X509_get0_notBefore(x)
 #define X509_get_notAfter(x)      X509_get0_notAfter(x)
 #define ASN1_STRING_data(x)       ASN1_STRING_get0_data(x)
+#else
+#define EVP_PKEY_id(pkey) (pkey)->type
 #endif
 
 /* ssl i/o channel object */
